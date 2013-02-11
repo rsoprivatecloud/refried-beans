@@ -3,7 +3,6 @@
 # REFRIED BEANS
 # 'soft' rekick a rcps environment
  
-#NOTE: need this to run on compute nodes as well
 
 function do_dsh {
 
@@ -43,7 +42,6 @@ fi
 knife cookbook upload -ao /opt/rpcs/chef-cookbooks/cookbooks >/dev/null
 knife role from file /opt/rpcs/chef-cookbooks/roles/*.rb >/dev/null
 
-#NOTE: need to remove nodes/readd to chef
 
 knife node list | egrep 'infra|novacpu|controller|compute' > /tmp/node_list.out 
 
@@ -75,4 +73,3 @@ mysql nova  -e 'UPDATE fixed_ips SET reserved=1 LIMIT 10' >/dev/null
 
 echo "ENJOY YOUR BEANS AND BE SURE TO REBOOT ALL NODES"
 
-# might need to run `mysqladmin flush-hosts` on infra if computes are making too many connections
